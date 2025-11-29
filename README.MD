@@ -38,9 +38,7 @@ The integrated WAF lets you switch between **vulnerable** and **protected** mode
 
 ---
 
-# 🕳️ Vulnerabilities Included
-
-The application intentionally includes:
+## 🕳️ The application intentionally includes:
 
 - SQL Injection (SQLi)
 - Stored Cross-Site Scripting (XSS)
@@ -64,28 +62,29 @@ Download PHP from the official Windows downloads page:
 
 👉 **https://windows.php.net/download/**
 
-Extract PHP, then:
+Install PHP, Go to C:\php
+
+then,
 
 - Duplicate `php.ini-development` → rename to `php.ini`
+- Open `php.ini`
 - Enable SQLite modules:
 
-```ini
-extension=pdo_sqlite
-extension=sqlite3
+**extension=pdo_sqlite**
+**extension=sqlite3**
+
 2. Extract the project
-Unzip the folder (e.g., AmazinVulnShop).
+Unzip the folder *AmazinVulnShop.zip*
 
-3. Start the development server
-Run this inside the folder:
+3. Navigate to the folder from the terminal then run this: 
+php -S 127.0.0.1:80
 
-bash
-Copy code
-php -S localhost:8000
 Open the site:
+👉 http://127.0.0.1
 
-👉 http://localhost:8000
+---
 
-🔓 Making the App Vulnerable
+# 🔓 Making the App Vulnerable
 The app ships with the WAF turned ON by default (BLOCK mode).
 This means attacks are blocked unless you disable the firewall.
 
@@ -101,21 +100,23 @@ All vulnerabilities become active again
 
 Use this to demo before/after scenarios.
 
-🔑 Default Credentials
-👑 Admin
+---
+
+# 🔑 Default Credentials
+
+## 👑 Admin
 Username: admin
-
 Password: admin
+## 👤 User Accounts
+Username: michael Password: ||michael||
+Username: john Password: ||john||
 
-👤 User Accounts
-michael / michael
+---
 
-john / john
-
-🛡 Built-In Web Application Firewall (WAF)
+# 🛡 Built-In Web Application Firewall (WAF)
 This fork includes a lightweight, fully integrated WAF (waf.php) that intercepts every request.
 
-🌐 Default Behavior
+## 🌐 Default Behavior
 WAF is ON by default
 
 Mode = BLOCK
@@ -126,64 +127,86 @@ All events logged to /waf_logs/waf.log
 
 Toggle modes via Admin Dashboard
 
-⚙️ WAF Modes
+### ⚙️ WAF Modes
 Mode	Description
 BLOCK	Blocks & logs attacks
 DETECT	Logs only (no blocking)
 OFF	App becomes fully vulnerable
 
-🧠 WAF Provides Protection Against:
-SQL Injection payloads
+## 🧠 WAF Provides Protection Against:
 
-XSS vectors (<script>, onerror=, javascript:)
-
-Command injection attempts
-
-Execution of uploaded .php files
-
-Unsafe file uploads (only jpg/jpeg/png allowed when WAF is ON)
-
-IDOR on profile.php?id=
-
-GET-based credential leaks
-
-Admin/user dashboard access restrictions
+- SQL Injection payloads
+- XSS vectors (<script>, onerror=, javascript:)
+- Command injection attempts
+- Execution of uploaded .php files
+- Unsafe file uploads (only jpg/jpeg/png allowed when WAF is ON)
+- IDOR on profile.php?id=
+- GET-based credential leaks
+- Admin/user dashboard access restrictions
 
 The WAF exists for demonstration — not for real security.
 
-📁 WAF Log Viewer
+## 📁 WAF Log Viewer
+
 The Admin Dashboard includes a WAF Logs section showing the latest 50 events, including:
 
-Timestamp
-
-Rule ID
-
-Block reason
-
-Requested URI
-
-IP address
+- Timestamp
+- Rule ID
+- Block reason
+- Requested URI
+- IP address
 
 Raw logs live here:
-
-bash
-Copy code
 /waf_logs/waf.log
+
 Great for teaching intrusion detection and viewing real-time attack attempts.
 
-⚠️ Known Limitations
-Not responsive
+---
 
-Designed for 1920×1080 (Full HD)
+# ⚠️ Known Limitations
+- Not responsive
+- Designed for 1920×1080 (Full HD)
+- WAF is intentionally simple (regex-based)
+- Educational/CTF tool, not production software
+---
+## 📛 Legal  
+- Not affiliated with Amazon  
+- Logos, names, and branding are parodies  
+- For ethical, educational use only
 
-WAF is intentionally simple (regex-based)
+---
 
-Educational/CTF tool, not production software
+## 🔍 Vulnerabilities Included
 
-📛 Legal Notice
-Not affiliated with Amazon
+This app includes several intentionally insecure features for training purposes. Here are examples, how to trigger them, and how to prevent them:
 
-Branding & names are parodies
+### 1. SQL Injection
+- **Example Payload:** `admin' --`
+- **Prevention:** Use prepared statements with parameterized queries to sanitize inputs and block SQL injection.
 
-For ethical and educational use only
+### 2. Stored Cross-Site Scripting (XSS)
+- **Payload:** `<script>alert("XSS");</script>`
+- **Prevention:** Escape output with `htmlspecialchars()` and validate/sanitize inputs to reject scripts.
 
+### 3. Broken Access Control
+- **Example:** Visit `http://localhost:8000/users.php` without logging in.
+- **Bonus:** `robots.txt` exposes paths like `/users.php`, `/uploads/`
+- **Prevention:** Add session checks to protect sensitive pages. Avoid listing sensitive routes in `robots.txt`.
+
+### 4. Unrestricted File Upload
+- **Example Upload:** `info.php`
+- **Test URL:** `http://localhost:8000/uploads/info.php`
+- **Prevention:** Validate file types, use `basename()` to block directory traversal, and store uploads outside the web root.
+
+### 5. Remote Code Execution (RCE)
+- **Example Upload:** `shell.php`
+- **Test URL:** `http://localhost:8000/uploads/shell.php?cmd=dir`
+- **Prevention:** Disable PHP execution in upload folders (e.g. via `.htaccess`), sanitize user input, and avoid using `eval()` or `system()` on raw data.
+
+### 6. Insecure Direct Object Reference (IDOR)
+- **Example:** `http://localhost:8000/profile.php?id=1`
+- **Prevention:** Verify user ownership with session checks before exposing data tied to IDs. Prefer indirect references.
+
+### 7. Sensitive Data Exposure
+- **Example:** `http://localhost:8000/login.php?username=admin&password=admin`
+- **Prevention:** Use `method="POST"` instead of GET for forms. Never log plaintext passwords. Hash with `password_hash()`.
