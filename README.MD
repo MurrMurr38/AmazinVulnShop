@@ -22,7 +22,6 @@ It's intentionally designed to demonstrate:
 
 The integrated WAF lets you switch between **vulnerable** and **protected** modes instantly.
 
----
 
 ## 🕳️ The Application Intentionally Includes
 
@@ -54,12 +53,11 @@ then,
 - Duplicate `php.ini-development` → rename to `php.ini`
 - Open `php.ini`
 - Enable SQLite modules:
-
 **extension=pdo_sqlite** <br> **extension=sqlite3**
 
 2. Unzip the folder **AmazinVulnShop.zip**
 
-3. Navigate to the folder from the terminal then run this: 
+3. Navigate to the folder from the terminal and run this: 
 
    ```bash
    php -S localhost:80
@@ -102,6 +100,7 @@ BLOCK	Blocks & logs attacks
 DETECT	Logs only (no blocking)
 OFF	App becomes fully vulnerable
 
+
 ## 🧠 WAF Provides Protection Against:
 
 - SQL Injection payloads
@@ -114,6 +113,7 @@ OFF	App becomes fully vulnerable
 - Admin/user dashboard access restrictions
 
 The WAF exists for demonstration, not for real security.
+
 
 ## 📁 WAF Log Viewer
 
@@ -138,10 +138,12 @@ Great for teaching intrusion detection and viewing real-time attack attempts.
 - WAF is intentionally simple (regex-based)
 - Educational/CTF tool, not production software
 
+
 ## 📛 Legal  
 - Not affiliated with Amazon  
 - Logos, names, and branding are parodies  
 - For ethical, educational use only
+
 
 # 🔍 Vulnerabilities Included
 
@@ -177,5 +179,6 @@ This app includes several intentionally insecure features for training purposes.
 ### 7. Sensitive Data Exposure
 - **Example:** `http://localhost:8000/login.php?username=admin&password=admin`
 - **Prevention:** Use `method="POST"` instead of GET for forms. Never log plaintext passwords. Hash with `password_hash()`.
+
 
 
