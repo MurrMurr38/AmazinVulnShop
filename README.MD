@@ -1,3 +1,4 @@
+
 # ⚡ Amazin – Vulnerable E-Commerce Web Application  
 ![Status](https://img.shields.io/badge/Project-Intentionally%20Vulnerable-red?style=for-the-badge)
 ![Language](https://img.shields.io/badge/PHP-8.x-blue?style=for-the-badge)
@@ -31,14 +32,14 @@ It mimics a real e-commerce platform — except the vulnerabilities are intentio
 Amazin simulates a simple online storefront with users, uploads, and admin features.  
 It's intentionally designed to demonstrate:
 
-- exploitation (insecure state)  
-- mitigation (secured state using WAF)
+- Exploitation (insecure state)  
+- Mitigation (secured state using WAF)
 
 The integrated WAF lets you switch between **vulnerable** and **protected** modes instantly.
 
 ---
 
-## 🕳️ The application intentionally includes:
+## 🕳️ The Application Intentionally Includes:
 
 - SQL Injection (SQLi)
 - Stored Cross-Site Scripting (XSS)
@@ -52,17 +53,16 @@ The integrated WAF lets you switch between **vulnerable** and **protected** mode
 
 Each vulnerability behaves like it would in a real insecure PHP app.
 
----
 
-# 🛠️ Setup Guide (Windows + PHP + SQLite)
+## 🛠️ Setup Guide (Windows + PHP + SQLite)
 
-## 1. Install PHP (Windows)
+### 1. Install PHP (Windows)
 
 Download PHP from the official Windows downloads page:
 
 👉 **https://windows.php.net/download/**
 
-Install PHP, Go to C:\php
+Install PHP, Go to `C:\php`
 
 then,
 
@@ -73,61 +73,50 @@ then,
 **extension=pdo_sqlite**
 **extension=sqlite3**
 
-2. Extract the project
-Unzip the folder *AmazinVulnShop.zip*
+2. Unzip the folder **AmazinVulnShop.zip**
 
 3. Navigate to the folder from the terminal then run this: 
-php -S 127.0.0.1:80
 
+   ```bash
+   php -S localhost:80
 Open the site:
-👉 http://127.0.0.1
+👉 'http://127.0.0.1'
 
----
 
-# 🔓 Making the App Vulnerable
+## 🔓 Making the App Vulnerable
+
 The app ships with the WAF turned ON by default (BLOCK mode).
 This means attacks are blocked unless you disable the firewall.
 
 To enable full vulnerability mode:
-
-Login as admin
-
-Open the Admin Dashboard
-
-Change WAF Mode → OFF
+- Login as admin
+- Open the Admin Dashboard
+- Change WAF Mode → OFF
 
 All vulnerabilities become active again
-
 Use this to demo before/after scenarios.
 
----
 
-# 🔑 Default Credentials
+## 🔑 Default Credentials
 
-## 👑 Admin
-Username: admin
-Password: admin
-## 👤 User Accounts
-Username: michael Password: ||michael||
-Username: john Password: ||john||
+**👑 Admin**
+Username: `admin` | Password: ` admin`
+**👤 User Accounts**
+Username: `michael` | Password: ` michael`
+Username: `john` | Password: ` john `
 
----
 
-# 🛡 Built-In Web Application Firewall (WAF)
-This fork includes a lightweight, fully integrated WAF (waf.php) that intercepts every request.
+## 🛡 Built-In Web Application Firewall (WAF)
+This project includes a lightweight, fully integrated WAF (waf.php) that intercepts every request.
 
-## 🌐 Default Behavior
+ **🌐 Default Behavior**
 WAF is ON by default
-
 Mode = BLOCK
-
 Attacks are blocked with a styled WAF block page
-
 All events logged to /waf_logs/waf.log
-
 Toggle modes via Admin Dashboard
 
-### ⚙️ WAF Modes
+**⚙️ WAF Modes**
 Mode	Description
 BLOCK	Blocks & logs attacks
 DETECT	Logs only (no blocking)
@@ -136,7 +125,7 @@ OFF	App becomes fully vulnerable
 ## 🧠 WAF Provides Protection Against:
 
 - SQL Injection payloads
-- XSS vectors (<script>, onerror=, javascript:)
+- XSS vectors `(<script>, onerror=, javascript:)`
 - Command injection attempts
 - Execution of uploaded .php files
 - Unsafe file uploads (only jpg/jpeg/png allowed when WAF is ON)
@@ -165,16 +154,15 @@ Great for teaching intrusion detection and viewing real-time attack attempts.
 
 # ⚠️ Known Limitations
 - Not responsive
-- Designed for 1920×1080 (Full HD)
+-  Optimized for 1920x1080 (Full HD) screens, Zoom the webpage until it fits your screen properly.
+-  May break on smaller or mobile displays
 - WAF is intentionally simple (regex-based)
 - Educational/CTF tool, not production software
----
+
 ## 📛 Legal  
 - Not affiliated with Amazon  
 - Logos, names, and branding are parodies  
 - For ethical, educational use only
-
----
 
 ## 🔍 Vulnerabilities Included
 
@@ -210,3 +198,4 @@ This app includes several intentionally insecure features for training purposes.
 ### 7. Sensitive Data Exposure
 - **Example:** `http://localhost:8000/login.php?username=admin&password=admin`
 - **Prevention:** Use `method="POST"` instead of GET for forms. Never log plaintext passwords. Hash with `password_hash()`.
+
