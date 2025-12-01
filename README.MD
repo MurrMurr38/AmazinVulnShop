@@ -81,13 +81,14 @@ Use this to demo before/after scenarios.
 
 ## 🔑 Default Credentials
 
-**👑 Admin**  <br> Username: `admin` | Password: ` admin`  <br> **👤 User Accounts**  <br> Username: `michael` | Password: ` michael` <br> Username: `john` | Password: ` john `
+**👑 Admin**  <br> Username: `admin` | Password: `admin`  <br> **👤 User Accounts**  <br> Username: `michael` | Password: `michael` <br> Username: `john` | Password: `john`
 
 
 ## 🛡 Built-In Web Application Firewall (WAF)
 This project includes a lightweight, fully integrated WAF (waf.php) that intercepts every request.
 
  **🌐 Default Behavior** <br> 
+
 WAF is ON by default <br> 
 Mode = BLOCK <br> 
 Attacks are blocked with a styled WAF block page <br> 
@@ -95,10 +96,10 @@ All events logged to /waf_logs/waf.log <br>
 Toggle modes via Admin Dashboard <br> 
 
 **⚙️ WAF Modes** <br> 
-Mode	Description <br> 
-BLOCK	Blocks & logs attacks <br> 
-DETECT	Logs only (no blocking) <br> 
-OFF	App becomes fully vulnerable <br> 
+
+BLOCK:   Blocks & logs attacks <br> 
+DETECT:	Logs only (no blocking) <br> 
+OFF:    	App becomes fully vulnerable <br> 
 
 
 ## 🧠 WAF Provides Protection Against:
@@ -125,24 +126,15 @@ The Admin Dashboard includes a WAF Logs section showing the latest 50 events, in
 - Requested URI
 - IP address
 
-Raw logs live here:
-/waf_logs/waf.log
-
 Great for teaching intrusion detection and viewing real-time attack attempts.
 
 
 ## ⚠️ Known Limitations
 - Not responsive
--  Optimized for 1920x1080 (Full HD) screens, Zoom the webpage until it fits your screen properly.
--  May break on smaller or mobile displays
+- Optimized for 1920x1080 (Full HD) screens, Zoom the webpage until it fits your screen properly.
+- May break on smaller or mobile displays
 - WAF is intentionally simple (regex-based)
-- Educational/CTF tool, not production software
-
-
-## 📛 Legal  
-- Not affiliated with Amazon  
-- Logos, names, and branding are parodies  
-- For ethical, educational use only
+- Educational tool, not production software.
 
 
 # 🔍 Vulnerabilities Included
@@ -180,6 +172,16 @@ This app includes several intentionally insecure features for training purposes.
 - **Example:** `http://localhost:8000/login.php?username=admin&password=admin`
 - **Prevention:** Use `method="POST"` instead of GET for forms. Never log plaintext passwords. Hash with `password_hash()`.
 
+
+## 📛 Legal Disclaimer
+
+This project is an educational security resource and is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Amazon or any of its subsidiaries or affiliates.  
+All logos, names, and branding that resemble Amazon or its services are used strictly for parody, research, and educational demonstration.
+
+Amazin is intentionally vulnerable and is designed **solely for ethical security training**, penetration testing practice in controlled environments, and academic study.  
+It must only be used on systems you own or have explicit permission to test.
+
+The author is not responsible for any misuse, damages, or legal consequences resulting from the use of this project.
 
 
 
