@@ -172,6 +172,7 @@ This app includes several intentionally insecure features for training purposes.
 - **Example:** `http://localhost:8000/login.php?username=admin&password=admin`
 - **Prevention:** Use `method="POST"` instead of GET for forms. Never log plaintext passwords. Hash with `password_hash()`.
 
+---
 
 ## 📛 Legal Disclaimer
 
@@ -182,6 +183,7 @@ Amazin is intentionally vulnerable and is designed **solely for ethical security
 It must only be used on systems you own or have explicit permission to test.
 
 The author is not responsible for any misuse, damages, or legal consequences resulting from the use of this project.
+
 
 
 
