@@ -160,8 +160,8 @@ This app includes several intentionally insecure features for training purposes.
 - **Prevention:** Validate file types, use `basename()` to block directory traversal, and store uploads outside the web root.
 
 ### 5. Remote Code Execution (RCE)
-- **Example Upload:** `shell.php` A simple PHP file that reads a `cmd` parameter and passes it directly to `system()` without validation.
-    (For safety reasons, the vulnerable PHP shell file is NOT included in this repository.)
+- **Example Upload:** `shell.php` A simple PHP file that reads a `cmd` parameter and passes it directly to `system()` without validation. <br>
+#### (For safety reasons, the vulnerable PHP shell file is NOT included in this repository.)
 - **Test URL:** `http://localhost/uploads/shell.php?cmd=dir`
 - **Prevention:** Disable PHP execution in upload folders (e.g. via `.htaccess`), sanitize user input, and avoid using `eval()` or `system()` on raw data.
 
@@ -184,6 +184,7 @@ Amazin is intentionally vulnerable and is designed **solely for ethical security
 It must only be used on systems you own or have explicit permission to test.
 
 The author is not responsible for any misuse, damages, or legal consequences resulting from the use of this project.
+
 
 
 
